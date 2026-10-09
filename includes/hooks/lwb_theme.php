@@ -278,7 +278,7 @@ add_hook('ClientAreaPageHome', 1, function ($vars) {
                 'days' => $days,
                 'amount' => $money($balance),
                 'pay_url' => $flexpayActive
-                    ? \FlexPayWhmcs\Gateway::guestPayUrl((int) $inv->id, 2)
+                    ? \FlexPayWhmcs\Gateway::guestPayUrl((int) $inv->id, 2) . '&b=1'
                     : 'viewinvoice.php?id=' . (int) $inv->id,
                 'pay_external' => $flexpayActive,
                 'view_url' => 'viewinvoice.php?id=' . (int) $inv->id,
