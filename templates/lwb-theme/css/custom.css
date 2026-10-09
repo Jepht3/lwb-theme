@@ -1492,7 +1492,7 @@ body.lwx #order-standard_cart .info-text-sm .alert-link { color: var(--lwm-prima
 body.lwx #order-standard_cart #inputDomainContact { max-width: 420px; }
 body.lwx #order-standard_cart #inputDomainContact.form-control { margin: 0; }
 body.lwx #order-standard_cart #frmCheckout .offset-sm-3:has(#inputDomainContact) { margin-left: 0; flex: 0 0 100%; max-width: 100%; }
-body.lwx #order-standard_cart #frmCheckout .sub-heading + p.small.text-muted { text-align: left; font-size: 13px; margin-bottom: 10px; }
+body.lwx #order-standard_cart #frmCheckout .sub-heading + p.small.text-muted { text-align: left !important; font-size: 13px; margin-bottom: 10px; }
 
 /* Domain choice: www. prefix and TLD */
 body.lwx #order-standard_cart .domain-selection-options .input-group-text, body.lwx #order-standard_cart .domain-selection-options .input-group-addon {
