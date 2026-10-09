@@ -22,6 +22,9 @@
         </div>
     </section>
 
+    {* ---------- Service status (LWB Statut module) ---------- *}
+    {include file="$template/includes/lwb-status-card.tpl"}
+
     {* ---------- Stats ---------- *}
     <section class="lwx-stats">
         <a class="lwx-stat" href="{$WEB_ROOT}/clientarea.php?action=services">

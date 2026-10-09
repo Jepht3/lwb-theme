@@ -1174,3 +1174,103 @@ body.lwx .iradio_square-blue.checked, body.lwx .icheckbox_square-blue.checked { 
 .lwb-pay-logo img { max-width: min(150px, 100%); max-height: 48px; width: auto; height: auto; object-fit: contain; }
 .lwb-pay-logo i { font-size: 30px; color: var(--lwm-primary); }
 .lwb-pay-name { font-size: 12.5px; font-weight: 500; line-height: 1.3; color: var(--lwm-text); text-align: center; }
+
+/* =====================================================================
+   DESIGN PASS 2 · LWB Theme — checkout footer, knowledge base, news, status
+   ===================================================================== */
+
+/* Checkout: notes, newsletter, terms, button, security note */
+body.lwx #order-standard_cart #frmCheckout textarea[name="notes"] { border-radius: 10px; min-height: 96px; }
+body.lwx #order-standard_cart .marketing-email-optin {
+    display: flex; align-items: center; gap: 14px; margin: 18px 0 0; padding: 14px 16px; background: #fff; border: 1px solid var(--lwx-line); box-shadow: var(--lwx-shadow);
+}
+body.lwx #order-standard_cart .marketing-email-optin h4 { display: none; }
+body.lwx #order-standard_cart .marketing-email-optin p { flex: 1; margin: 0; font-size: 13.5px; line-height: 1.5; color: #475467; }
+body.lwx .lwb-switch { position: relative; flex: 0 0 auto; width: 44px; height: 24px; margin: 0; cursor: pointer; }
+body.lwx .lwb-switch input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+body.lwx .lwb-switch span { position: absolute; inset: 0; border-radius: 999px; background: #d0d5dd; transition: background .15s; }
+body.lwx .lwb-switch span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(16, 24, 40, .2); transition: transform .15s; }
+body.lwx .lwb-switch input:checked + span { background: var(--lwm-ok); }
+body.lwx .lwb-switch input:checked + span::after { transform: translateX(20px); }
+body.lwx .lwb-switch input:focus-visible + span { box-shadow: 0 0 0 3px rgba(3, 6, 115, .18); }
+body.lwx #order-standard_cart #frmCheckout > .text-center { text-align: left !important; margin-top: 18px; }
+body.lwx #order-standard_cart #frmCheckout > .text-center > p { margin: 0 0 14px; }
+body.lwx #order-standard_cart #frmCheckout .checkbox-inline {
+    display: flex; align-items: center; gap: 10px; margin: 0; padding: 12px 16px; border-radius: 10px; background: var(--lwm-primary-50);
+    font-size: 13.5px; font-weight: 500; color: var(--lwm-text); cursor: pointer;
+}
+body.lwx #order-standard_cart #frmCheckout .checkbox-inline a { font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+body.lwx #order-standard_cart #btnCompleteOrder { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px 22px; font-size: 16px; font-weight: 700; border-radius: 12px; }
+body.lwx #order-standard_cart .checkout-security-msg {
+    display: block; margin: 14px 0 0; padding: 10px 14px; border: 0; border-radius: 10px; text-align: center;
+    background: transparent; color: var(--lwm-muted); font-size: 12.5px; line-height: 1.5;
+}
+body.lwx #order-standard_cart .checkout-security-msg i { float: none !important; margin: 0 6px 0 0 !important; font-size: 13px !important; color: var(--lwm-ok); }
+body.lwx #order-standard_cart .checkout-security-msg .clearfix { display: none; }
+body.lwx #order-standard_cart #frmCheckout .lwb-reveal { margin-top: 16px; }
+body.lwx #order-standard_cart .checkout-security-msg strong { color: #475467; }
+
+/* Knowledge base */
+body.lwx .kb-search { border-radius: 12px; overflow: hidden; box-shadow: var(--lwx-shadow); border: 1px solid var(--lwx-line); background: #fff; }
+body.lwx .kb-search .form-control { border: 0 !important; box-shadow: none !important; font-size: 15px !important; min-height: 52px; padding-left: 18px; }
+body.lwx .kb-search .btn { border-radius: 10px !important; margin: 6px; min-height: 40px; padding: 0 20px; font-size: 14px; }
+body.lwx .card.kb-category { padding: 0; margin-bottom: 16px !important; transition: border-color .15s, box-shadow .15s, transform .15s; }
+body.lwx .card.kb-category:hover { border-color: #c9cee0; box-shadow: 0 12px 28px rgba(3, 6, 115, .08); transform: translateY(-1px); }
+body.lwx .kb-category .card-body { display: grid; grid-template-columns: 42px 1fr; column-gap: 14px; row-gap: 2px; padding: 16px 18px; text-decoration: none; }
+body.lwx .kb-category .card-body > .h5 { display: contents; }
+body.lwx .kb-category .card-body .fa-folder {
+    grid-row: 1 / span 2; display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px;
+    background: var(--lwm-primary-50); color: var(--lwm-primary); font-size: 0; align-self: start;
+}
+body.lwx .kb-category .card-body .fa-folder::before { content: "\f02d"; font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free"; font-weight: 400; font-size: 17px; }
+body.lwx .kb-category .card-body > .h5 { font-size: 15.5px; font-weight: 700; color: var(--lwm-text); }
+body.lwx .kb-category .badge { float: none !important; order: 3; justify-self: start; grid-column: 2; margin-top: 8px; padding: 4px 9px; border-radius: 999px; background: var(--lwx-soft) !important; color: var(--lwm-muted) !important; font-size: 11.5px; font-weight: 600; }
+body.lwx .kb-category .card-body p { grid-column: 2; color: var(--lwm-muted); line-height: 1.45; }
+body.lwx .kb-article-item, body.lwx a.kb-article-item { color: var(--lwm-text); font-weight: 600; text-decoration: none; }
+body.lwx .kb-article-item:hover { border-color: #c9cee0; color: var(--lwm-primary); }
+body.lwx .kb-article-item .fa-file-alt, body.lwx .kb-article-item i { color: var(--lwm-primary); margin-right: 6px; }
+body.lwx .tag-cloud, body.lwx [menuitemname="Support Knowledgebase Tag Cloud"] .card-body, body.lwx [menuitemname="Support Knowledgebase Tag Cloud"] .lwx-panel-body { display: flex; flex-wrap: wrap; gap: 6px; line-height: 1.2; }
+body.lwx [menuitemname="Support Knowledgebase Tag Cloud"] a, body.lwx .tag-cloud a {
+    display: inline-block; padding: 5px 10px; border-radius: 999px; background: var(--lwx-soft); color: #475467 !important; font-size: 12px !important; font-weight: 500; text-decoration: none;
+}
+body.lwx [menuitemname="Support Knowledgebase Tag Cloud"] a:hover, body.lwx .tag-cloud a:hover { background: var(--lwm-primary-50); color: var(--lwm-primary) !important; }
+
+/* Announcements */
+body.lwx .announcement-single blockquote, body.lwx .announcements blockquote, body.lwx .primary-content blockquote {
+    margin: 10px 0 14px; padding: 0; border: 0; background: none; color: #475467; font-size: 14px; line-height: 1.65;
+}
+body.lwx .announcement-single blockquote p, body.lwx .primary-content blockquote p { margin: 0; }
+body.lwx .announcement-single h3 a, body.lwx .announcement-single .h3 a { color: var(--lwm-text); font-weight: 800; }
+body.lwx .announcement-single .btn, body.lwx .announcements .btn-default { border-radius: 9px; font-weight: 600; }
+
+/* Service status (LWB Statut): sidebar pill, dashboard and login cards */
+body.lwx .lwx-status {
+    display: flex; align-items: center; gap: 10px; margin: 0 0 10px; padding: 10px 12px; border-radius: 10px;
+    background: rgba(255, 255, 255, .08); color: #fff !important; font-size: 12.5px; line-height: 1.3; text-decoration: none !important;
+}
+body.lwx .lwx-status:hover { background: rgba(255, 255, 255, .14); }
+body.lwx .lwx-status b { display: block; font-weight: 700; }
+body.lwx .lwx-status small { opacity: .75; }
+.lwb-dot { position: relative; flex: 0 0 auto; width: 10px; height: 10px; border-radius: 50%; background: #16a34a; }
+.lwb-dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; background: inherit; opacity: .35; animation: lwb-pulse 2s ease-out infinite; }
+.lwb-dot.lwb-tone-info { background: #3b82f6; }
+.lwb-dot.lwb-tone-warn { background: #f59e0b; }
+.lwb-dot.lwb-tone-partial { background: #f97316; }
+.lwb-dot.lwb-tone-danger { background: #ef4444; }
+@keyframes lwb-pulse { 0% { transform: scale(.6); opacity: .5; } 100% { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .lwb-dot::after { animation: none; } }
+
+body.lwx .lwx-statuscard { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 16px 20px; }
+body.lwx .lwx-statuscard-main { display: flex; align-items: center; gap: 12px; flex: 1 1 260px; min-width: 0; }
+body.lwx .lwx-statuscard-main b { display: block; font-size: 15px; font-weight: 700; color: var(--lwm-text); }
+body.lwx .lwx-statuscard-main small { color: var(--lwm-muted); font-size: 12.5px; }
+body.lwx .lwx-statuscard-chips { display: flex; flex-wrap: wrap; gap: 6px; flex: 2 1 320px; }
+body.lwx .lwx-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: var(--lwx-soft); font-size: 12px; font-weight: 500; color: #475467; }
+body.lwx .lwx-chip i { width: 7px; height: 7px; border-radius: 50%; background: #16a34a; }
+body.lwx .lwx-chip.lwb-tone-info i { background: #3b82f6; }
+body.lwx .lwx-chip.lwb-tone-warn i { background: #f59e0b; }
+body.lwx .lwx-chip.lwb-tone-partial i { background: #f97316; }
+body.lwx .lwx-chip.lwb-tone-danger i { background: #ef4444; }
+body.lwx .lwx-statuscard .lwx-btn { flex: 0 0 auto; }
+body.lwx .lwx-statuscard.is-alert { border-color: #fcd34d; background: #fffbeb; }
+body.lwx .lwx-login-status { max-width: 540px; margin: 18px auto 0; }

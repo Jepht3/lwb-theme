@@ -62,6 +62,12 @@
         </nav>
 
         <div class="lwx-side-foot">
+            {if $lwbStatus}
+                <a class="lwx-status" href="{$WEB_ROOT}/{$lwbStatus.url}">
+                    <span class="lwb-dot lwb-tone-{$lwbStatus.tone}"></span>
+                    <span><b>{$lwbStatus.label}</b><small>{$lwbStatus.page_title|escape}</small></span>
+                </a>
+            {/if}
             {if $lwbContact.whatsapp_link}
                 <a class="lwx-help" href="{$lwbContact.whatsapp_link}" target="_blank" rel="noopener">
                     <i class="fab fa-whatsapp"></i><span><b>Besoin d'aide ?</b>Écrivez-nous sur WhatsApp</span>

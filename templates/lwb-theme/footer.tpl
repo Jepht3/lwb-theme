@@ -1,4 +1,9 @@
 {assign var=lwxFull value=in_array($templatefile, ['clientareahome', 'clientareaproducts', 'clientareainvoices', 'clientareadomains', 'supportticketslist', 'clientareadetails', 'clientareaemails', 'user-security', 'user-password', 'user-profile', 'account-contacts-manage', 'account-contacts-new', 'account-paymentmethods', 'account-user-management', 'account-user-permissions'])}
+                    {if $templatefile == 'login' && $lwbStatus}
+                        <div class="lwx-login-status">
+                            {include file="$template/includes/lwb-status-card.tpl" lwbStatusCompact=true}
+                        </div>
+                    {/if}
                     </div>
 
                     </div>
@@ -10,6 +15,7 @@
             <div class="lwx-container lwx-footer-inner">
                 <p>{lang key="copyrightFooterNotice" year=$date_year company=$companyname}</p>
                 <ul>
+                    {if $lwbStatus}<li><a href="{$WEB_ROOT}/{$lwbStatus.url}"><span class="lwb-dot lwb-tone-{$lwbStatus.tone}" style="display:inline-block;width:8px;height:8px;margin-right:6px"></span>{$lwbStatus.page_title|escape}</a></li>{/if}
                     <li><a href="{$WEB_ROOT}/contact.php">{lang key='contactus'}</a></li>
                     {if $acceptTOS}
                         <li><a href="{$tosURL}" target="_blank">{lang key='ordertos'}</a></li>
@@ -169,6 +175,22 @@
             apply();
         });
     })();
+    </script>
+
+    <script>
+    // Checkout: the newsletter opt-in becomes a simple switch in the theme style.
+    jQuery(function ($) {
+        $('.marketing-email-optin input[name="marketingoptin"]').each(function () {
+            var input = $(this);
+            if (input.closest('.lwb-switch').length) { return; }
+            if ($.fn.bootstrapSwitch && input.data('bootstrap-switch')) { input.bootstrapSwitch('destroy'); }
+            var label = $('<label class="lwb-switch" title="Recevoir nos e-mails"></label>');
+            input.removeAttr('data-size').removeClass('toggle-switch-success');
+            input.wrap(label).after('<span aria-hidden="true"></span>');
+            input.closest('.marketing-email-optin').find('p').attr('id', 'lwbOptinText');
+            input.attr('aria-labelledby', 'lwbOptinText');
+        });
+    });
     </script>
 
     {if $lwbGatewayLogos}
