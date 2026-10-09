@@ -171,6 +171,41 @@
     })();
     </script>
 
+    {if $lwbGatewayLogos}
+    <script>
+    // Checkout: payment methods as a grid of cards with the gateway logo.
+    jQuery(function ($) {
+        var logos = {$lwbGatewayLogos};
+        var box = $('#paymentGatewaysContainer');
+        if (!box.length || box.hasClass('lwb-pay')) { return; }
+        box.addClass('lwb-pay');
+        var grid = box.find('label.radio-inline').first().parent().addClass('lwb-pay-grid');
+        grid.find('label.radio-inline').each(function () {
+            var label = $(this).addClass('lwb-pay-card');
+            var input = label.find('input[name="paymentmethod"]');
+            var name = $.trim(label.text());
+            label.contents().filter(function () { return this.nodeType === 3; }).remove();
+            var logo = $('<span class="lwb-pay-logo"></span>');
+            var sys = input.val();
+            if (logos[sys]) {
+                logo.append($('<img alt="" loading="lazy">').attr('src', '{$WEB_ROOT}/' + logos[sys]));
+            } else {
+                var icon = /paypal/i.test(sys) ? 'fab fa-paypal' : (input.hasClass('is-credit-card') ? 'far fa-credit-card' : 'far fa-wallet');
+                logo.append($('<i aria-hidden="true"></i>').addClass(icon));
+            }
+            label.append(logo, $('<span class="lwb-pay-name"></span>').text(name));
+        });
+        function sync() {
+            grid.find('.lwb-pay-card').each(function () {
+                $(this).toggleClass('is-checked', $(this).find('input[name="paymentmethod"]').prop('checked'));
+            });
+        }
+        grid.on('change ifChanged ifChecked', 'input[name="paymentmethod"]', function () { setTimeout(sync, 0); });
+        sync();
+    });
+    </script>
+    {/if}
+
     {$footeroutput}
 
 </body>

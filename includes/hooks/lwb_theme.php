@@ -130,8 +130,37 @@ add_hook('ClientAreaPage', 1, function ($vars) {
     return [
         'lwmAssetVersion' => is_file($css) ? (string) filemtime($css) : '',
         'lwbContact' => lwb_contact(),
+        'lwbGatewayLogos' => lwb_gateway_logos($vars),
     ];
 });
+
+/**
+ * Logos of the payment gateways offered at checkout, as a JSON object
+ * {sysname: url}. Uses modules/gateways/<sysname>/logo.(svg|png|jpg|webp),
+ * which most gateway modules ship. Empty string when there is no gateway list.
+ */
+function lwb_gateway_logos($vars)
+{
+    if (empty($vars['gateways']) || !is_array($vars['gateways'])) {
+        return '';
+    }
+    $logos = [];
+    foreach ($vars['gateways'] as $key => $gateway) {
+        $sysname = is_array($gateway) && !empty($gateway['sysname']) ? $gateway['sysname'] : $key;
+        $sysname = preg_replace('/[^a-z0-9_]/i', '', (string) $sysname);
+        if ($sysname === '') {
+            continue;
+        }
+        foreach (['svg', 'png', 'jpg', 'webp'] as $ext) {
+            $rel = 'modules/gateways/' . $sysname . '/logo.' . $ext;
+            if (is_file(ROOTDIR . '/' . $rel)) {
+                $logos[$sysname] = $rel;
+                break;
+            }
+        }
+    }
+    return json_encode((object) $logos, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES);
+}
 
 function lwb_client_id($vars)
 {

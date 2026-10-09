@@ -7,6 +7,8 @@ C'est un thème enfant de **Twenty-One** : il fonctionne sur n'importe quelle in
 - Tableau de bord : services, factures à payer, domaines, tickets, crédit disponible
 - Pages redessinées : services, domaines (et détail d'un domaine), factures, tickets
 - Facture en ligne modernisée, compteurs (factures impayées, réponses reçues) dans le menu
+- Commande : modes de paiement présentés en cartes avec le logo de chaque passerelle
+  (3 par ligne, 2 sur mobile), logo lu dans `modules/gateways/<module>/logo.png`
 - Boutons WhatsApp / téléphone optionnels
 - Intégrations optionnelles détectées automatiquement :
   passerelle FlexPay (bouton « Payer » direct) et module de factures `lwm_invoices` ;
@@ -43,6 +45,7 @@ thèmes ne sont pas affectés.
 
 ## Historique
 
+- **1.3.1** — Page de commande : modes de paiement en grille de cartes avec logos.
 - **1.3.0** — Première version publique sous le nom LWB Theme : refonte de
   l'espace client (en-tête, pied de page, barre latérale, accueil, domaines,
   services, factures, tickets), réglages externalisés.
