@@ -1521,3 +1521,6 @@ body.lwx #order-standard_cart .info-text-sm i { margin-right: 6px; }
 body.lwx #order-standard_cart .view-cart-tabs .promo .btn, body.lwx #order-standard_cart .view-cart-tabs .promo .btn:hover { background: var(--lwm-primary) !important; color: #fff !important; border: 0 !important; }
 body.lwx #order-standard_cart .view-cart-items .item { background: #fff !important; }
 body.lwx #order-standard_cart .view-cart-items .item:hover { background: #fafbfd !important; }
+
+/* Dashboard stats: long amounts wrap instead of being cut */
+body.lwx .lwx-stat div span { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; }
