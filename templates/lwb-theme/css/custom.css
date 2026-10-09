@@ -1411,3 +1411,23 @@ body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="webmail"] .s
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Upgrade/Downgrade"] .sidebar-menu-item-icon::before { content: "\f201"; }
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Cancel"] .sidebar-menu-item-icon::before { content: "\f05e"; }
 body.lwx .lwx-panel[menuitemname^="Service Details"] .loading { position: absolute; }
+
+/* Service details cards: coloured icons (img/actions/*.svg) */
+body.lwx .lwx-panel[menuitemname^="Service Details"] .sidebar-menu-item-icon-wrapper { width: 44px; height: 44px; border-radius: 12px; background: transparent no-repeat center / 44px 44px; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] .lwx-panel-link.active .sidebar-menu-item-icon-wrapper { background-color: transparent; box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--lwm-primary); }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Information"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/info.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Downloads"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/downloads.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Addons"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/addons.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="cpanel"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/cpanel.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="webmail"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/webmail.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Change Password"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/password.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Upgrade/Downgrade"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/upgrade.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Cancel"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/cancel.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Information"] .sidebar-menu-item-icon,
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Downloads"] .sidebar-menu-item-icon,
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Addons"] .sidebar-menu-item-icon,
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="cpanel"] .sidebar-menu-item-icon,
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="webmail"] .sidebar-menu-item-icon,
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Change Password"] .sidebar-menu-item-icon,
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Upgrade/Downgrade"] .sidebar-menu-item-icon,
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Cancel"] .sidebar-menu-item-icon { visibility: hidden; }
