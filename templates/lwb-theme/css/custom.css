@@ -1274,3 +1274,55 @@ body.lwx .lwx-chip.lwb-tone-danger i { background: #ef4444; }
 body.lwx .lwx-statuscard .lwx-btn { flex: 0 0 auto; }
 body.lwx .lwx-statuscard.is-alert { border-color: #fcd34d; background: #fffbeb; }
 body.lwx .lwx-login-status { max-width: 540px; margin: 18px auto 0; }
+
+/* =====================================================================
+   DESIGN PASS 3 · LWB Theme — tables, add funds, e-mails, ticket form
+   ===================================================================== */
+body.lwx .primary-content .table-striped tbody tr:nth-of-type(odd) { background: transparent; }
+body.lwx .primary-content .table tbody tr:hover { background: #fafbfd; }
+body.lwx .primary-content .table tbody th {
+    background: #f9fafb; color: var(--lwm-muted); font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    border-top: 0; border-bottom: 1px solid var(--lwx-line); padding: 12px 14px; white-space: nowrap;
+}
+body.lwx .primary-content .card > .table { border-radius: 10px; overflow: hidden; }
+body.lwx .primary-content .card .card-title { font-size: 17px; font-weight: 800; }
+body.lwx #payMethodList td[colspan] { padding: 28px 14px; color: var(--lwm-muted); }
+
+/* Add funds: limits as a key / value list */
+body.lwx .primary-content .card > .table td.textright { width: 50%; text-align: left; color: var(--lwm-muted); }
+body.lwx .primary-content .card > .table td.textright strong { font-weight: 500; }
+body.lwx .primary-content .card > .table td.textright + td { text-align: right; font-weight: 700; }
+body.lwx .primary-content .card-footer { background: #fafbfc; border-top: 1px solid #eef1f6; color: var(--lwm-muted); }
+
+/* DataTables lists (e-mails, quotes, etc.) */
+body.lwx .dataTables_wrapper .listtable { padding: 0; }
+body.lwx .dataTables_wrapper .dataTables_filter { padding: 14px 14px 6px; }
+body.lwx .dataTables_wrapper .dataTables_filter input { min-width: 240px; }
+body.lwx .dataTables_wrapper .dataTables_info { padding: 12px 14px; }
+body.lwx .dataTables_wrapper .dataTables_paginate { padding: 10px 14px; }
+body.lwx .dataTables_wrapper .dataTables_length { padding: 0 14px 14px; color: var(--lwm-muted); font-size: 13px; }
+body.lwx .pagination { gap: 4px; }
+body.lwx .pagination .page-link { border: 0; border-radius: 8px !important; color: #475467; font-weight: 600; font-size: 13px; min-width: 34px; text-align: center; background: transparent; }
+body.lwx .pagination .page-link:hover { background: var(--lwx-soft); color: var(--lwm-text); }
+body.lwx .pagination .page-item.active .page-link { background: var(--lwm-primary); color: #fff; }
+body.lwx .pagination .page-item.disabled .page-link { color: #c0c6d4; background: transparent; }
+body.lwx table.table-list .btn-sm, body.lwx #tableEmailsList .btn {
+    background: #fff; color: var(--lwm-text) !important; border: 1px solid var(--lwx-line); border-radius: 8px; font-weight: 600; font-size: 12.5px; padding: 6px 12px; box-shadow: none;
+}
+body.lwx table.table-list .btn-sm:hover, body.lwx #tableEmailsList .btn:hover { border-color: var(--lwm-primary); color: var(--lwm-primary) !important; background: var(--lwm-primary-50); }
+
+/* Ticket form: markdown editor and attachments */
+body.lwx .md-editor { border: 1px solid var(--lwx-line) !important; border-radius: 10px; overflow: hidden; box-shadow: none !important; }
+body.lwx .md-editor > .md-header { background: #f9fafb; border-bottom: 1px solid var(--lwx-line); padding: 6px 8px; }
+body.lwx .md-editor .btn-group { margin-right: 6px; }
+body.lwx .md-editor .md-header .btn {
+    background: transparent !important; border: 0 !important; border-radius: 7px !important; color: #475467 !important; box-shadow: none !important; padding: 5px 9px;
+}
+body.lwx .md-editor .md-header .btn:hover { background: #eef1f6 !important; color: var(--lwm-text) !important; }
+body.lwx .md-editor .md-header .btn-primary, body.lwx .md-editor .md-header .btn.active { background: var(--lwm-primary-50) !important; color: var(--lwm-primary) !important; }
+body.lwx .md-editor > textarea, body.lwx .md-editor .md-preview { border: 0 !important; background: #fff !important; padding: 14px 16px; font-size: 14px; }
+body.lwx .md-editor > .md-footer, body.lwx .markdown-editor-status { background: #fafbfc; border-top: 1px solid #eef1f6; color: var(--lwm-muted); font-size: 12px; }
+body.lwx .custom-file-label { border-radius: 10px; border-color: var(--lwx-line); color: var(--lwm-muted); }
+body.lwx .custom-file-label::after { border-radius: 0 10px 10px 0; background: var(--lwx-soft); color: var(--lwm-text); font-weight: 600; }
+body.lwx #ticketReplyAttachments .btn, body.lwx .btn-add-attachment, body.lwx #btnTicketAttachmentsAdd { border-radius: 9px; font-weight: 600; }
+body.lwx .primary-content form .col-form-label, body.lwx .primary-content form label { font-weight: 600; font-size: 13.5px; color: var(--lwm-text); }
