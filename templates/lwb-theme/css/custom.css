@@ -1326,3 +1326,53 @@ body.lwx .custom-file-label { border-radius: 10px; border-color: var(--lwx-line)
 body.lwx .custom-file-label::after { border-radius: 0 10px 10px 0; background: var(--lwx-soft); color: var(--lwm-text); font-weight: 600; }
 body.lwx #ticketReplyAttachments .btn, body.lwx .btn-add-attachment, body.lwx #btnTicketAttachmentsAdd { border-radius: 9px; font-weight: 600; }
 body.lwx .primary-content form .col-form-label, body.lwx .primary-content form label { font-weight: 600; font-size: 13.5px; color: var(--lwm-text); }
+
+/* =====================================================================
+   DESIGN PASS 4 · LWB Theme — service details (cPanel module panels)
+   ===================================================================== */
+body.lwx #tabOverview .card { border: 1px solid var(--lwx-line); border-radius: 12px; box-shadow: var(--lwx-shadow); overflow: hidden; }
+body.lwx #tabOverview .card-header { background: #fff; border-bottom: 1px solid #eef1f6; padding: 14px 18px; }
+body.lwx #tabOverview .card-header .card-title { font-size: 11px !important; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--lwm-primary); }
+body.lwx #tabOverview .card-body { padding: 18px; }
+
+/* Offer / domain */
+body.lwx #cPanelPackagePanel .card-body { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; text-align: left !important; }
+body.lwx #cPanelPackagePanel .cpanel-package-details em { display: block; font-style: normal; font-size: 12px; color: var(--lwm-muted); }
+body.lwx #cPanelPackagePanel .cpanel-package-details h4 { font-size: 20px; font-weight: 800; color: var(--lwm-text); margin: 2px 0 !important; }
+body.lwx #cPanelPackagePanel .cpanel-package-details a { font-size: 13.5px; font-weight: 600; }
+body.lwx #cPanelPackagePanel .card-body > p { margin: 0; }
+body.lwx #cPanelPackagePanel .btn, body.lwx #cPanelExtrasPurchasePanel .btn { border-radius: 9px; font-weight: 600; }
+body.lwx #cPanelExtrasPurchasePanel .card-body { text-align: left !important; width: 100%; }
+body.lwx #cPanelExtrasPurchasePanel .btn { margin-top: 10px !important; }
+
+/* Usage bars (replace the dials) */
+body.lwx .cpanel-usage-stats { text-align: left !important; }
+body.lwx .cpanel-usage-stats > .row { row-gap: 18px; }
+body.lwx .lwb-usage-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+body.lwx .lwb-usage-head span { font-size: 13.5px; font-weight: 600; color: var(--lwm-text); }
+body.lwx .lwb-usage-head b { font-size: 18px; font-weight: 800; color: var(--lwm-text); }
+body.lwx .lwb-usage-bar { height: 8px; border-radius: 999px; background: #eef1f6; overflow: hidden; }
+body.lwx .lwb-usage-bar i { display: block; height: 100%; min-width: 4px; border-radius: 999px; transition: width .6s ease; }
+body.lwx .lwb-usage-ok { background: var(--lwm-primary); }
+body.lwx .lwb-usage-warn { background: #f59e0b; }
+body.lwx .lwb-usage-danger { background: var(--lwm-danger); }
+body.lwx .lwb-usage small { display: block; margin-top: 6px; font-size: 12px; color: var(--lwm-muted); }
+body.lwx .cpanel-usage-stats .limit-near { margin-top: 16px; padding-top: 12px; border-top: 1px solid #eef1f6; font-size: 12px; color: var(--lwm-muted) !important; text-align: left; }
+
+/* Shortcuts as tiles */
+body.lwx .cpanel-feature-row { row-gap: 10px; }
+body.lwx .cpanel-feature-row a {
+    display: flex !important; flex-direction: column; align-items: center; justify-content: center; gap: 8px; height: 100%; min-height: 96px; margin: 0 !important;
+    padding: 14px 8px; border: 1px solid var(--lwx-line); border-radius: 10px; background: #fff; color: var(--lwm-text); font-size: 12.5px; font-weight: 600; text-align: center; text-decoration: none;
+    transition: border-color .15s, background-color .15s, transform .15s;
+}
+body.lwx .cpanel-feature-row a:hover { border-color: var(--lwm-primary); background: var(--lwm-primary-50); color: var(--lwm-primary); transform: translateY(-1px); }
+body.lwx .cpanel-feature-row img { width: 36px; height: 36px; object-fit: contain; }
+
+/* Billing overview as a key / value grid */
+body.lwx #cPanelBillingOverviewPanel .card-body > .row > [class*="col-"] > .row { margin: 0; padding: 10px 0; border-bottom: 1px solid #eef1f6; }
+body.lwx #cPanelBillingOverviewPanel .card-body > .row > [class*="col-"] > .row:last-child { border-bottom: 0; }
+body.lwx #cPanelBillingOverviewPanel .text-right { text-align: left !important; color: var(--lwm-muted); font-size: 13px; padding-left: 0; }
+body.lwx #cPanelBillingOverviewPanel .text-right + [class*="col-"] { text-align: right; font-weight: 700; color: var(--lwm-text); padding-right: 0; }
+body.lwx .cpanel-usage-stats > .row > .lwb-usage { flex: 0 0 100%; max-width: 100%; }
+body.lwx .lwb-usage-head b { white-space: nowrap; }

@@ -193,6 +193,36 @@
     });
     </script>
 
+    {if $templatefile == 'clientareaproductdetails'}
+    <script>
+    // Service details: usage dials (cPanel module) become progress bars.
+    jQuery(window).on('load', function () {
+        var $ = jQuery;
+        function size(mb) {
+            if (!/^[\d.]+$/.test(mb)) { return mb === '' ? '' : mb; }
+            var n = parseFloat(mb);
+            var out = n >= 1024 ? (n / 1024).toFixed(n >= 10240 ? 0 : 1) + ' Go' : Math.round(n) + ' Mo';
+            return out.replace('.', ',');
+        }
+        $('.usage-dial').each(function () {
+            var col = $(this).closest('[class*="col-"]');
+            if (!col.length || col.hasClass('lwb-usage')) { return; }
+            var label = $.trim(col.find('strong').first().text());
+            var pct = Math.max(0, Math.min(100, parseFloat($(this).val()) || 0));
+            var m = col.text().replace(/\s+/g, ' ').match(/([\d.]+)\s*M\s*\/\s*([^\s]+)\s*M?\s*$/);
+            var unlimited = m && !/^[\d.]+$/.test(m[2]);
+            var detail = m ? size(m[1]) + ' utilisés sur ' + (unlimited ? m[2].toLowerCase() : size(m[2])) : '';
+            var tone = pct >= 90 ? 'danger' : (pct >= 75 ? 'warn' : 'ok');
+            col.addClass('lwb-usage').empty().append(
+                $('<div class="lwb-usage-head"></div>').append($('<span></span>').text(label), $('<b></b>').text(unlimited ? '∞' : pct + ' %')),
+                $('<div class="lwb-usage-bar"></div>').append($('<i></i>').addClass('lwb-usage-' + tone).css('width', (unlimited ? 0 : pct) + '%')),
+                $('<small></small>').text(detail)
+            );
+        });
+    });
+    </script>
+    {/if}
+
     {if $lwbGatewayLogos}
     <script>
     // Checkout: payment methods as a grid of cards with the gateway logo.
