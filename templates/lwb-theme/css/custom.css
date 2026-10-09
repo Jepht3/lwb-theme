@@ -1376,3 +1376,38 @@ body.lwx #cPanelBillingOverviewPanel .text-right { text-align: left !important; 
 body.lwx #cPanelBillingOverviewPanel .text-right + [class*="col-"] { text-align: right; font-weight: 700; color: var(--lwm-text); padding-right: 0; }
 body.lwx .cpanel-usage-stats > .row > .lwb-usage { flex: 0 0 100%; max-width: 100%; }
 body.lwx .lwb-usage-head b { white-space: nowrap; }
+
+/* Service details sidebar: overview and actions as icon cards (like the payment cards) */
+body.lwx .lwx-panel[menuitemname="Service Details Overview"] .lwx-panel-list,
+body.lwx .lwx-panel[menuitemname="Service Details Actions"] .lwx-panel-list {
+    display: grid !important; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; padding: 4px 12px 12px !important;
+}
+body.lwx .lwx-panel[menuitemname^="Service Details"] .lwx-panel-link {
+    display: block; margin: 0 !important; padding: 14px 8px 12px !important; border: 1.5px solid var(--lwm-border) !important; border-radius: var(--lwm-radius-sm) !important;
+    background: var(--lwm-surface) !important; box-shadow: none !important; text-align: center; transition: border-color .15s, box-shadow .15s, background-color .15s;
+}
+body.lwx .lwx-panel[menuitemname^="Service Details"] .lwx-panel-link:hover { border-color: var(--lwm-border-strong) !important; box-shadow: 0 4px 14px rgba(16, 24, 40, .06) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] .lwx-panel-link.active {
+    border-color: var(--lwm-primary) !important; background: var(--lwm-primary-50) !important; box-shadow: 0 0 0 3px rgba(3, 6, 115, .08) !important;
+}
+body.lwx .lwx-panel[menuitemname^="Service Details"] .sidebar-menu-item-wrapper { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] .sidebar-menu-item-icon-wrapper {
+    display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin: 0; border-radius: 12px;
+    background: var(--lwm-primary-50); color: var(--lwm-primary);
+}
+body.lwx .lwx-panel[menuitemname^="Service Details"] .lwx-panel-link.active .sidebar-menu-item-icon-wrapper { background: var(--lwm-primary); color: #fff; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] .sidebar-menu-item-icon { font-size: 16px; width: auto; color: inherit !important; margin: 0 !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] .sidebar-menu-item-label { font-size: 12.5px; font-weight: 600; line-height: 1.3; color: var(--lwm-text); white-space: normal; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] .lwx-panel-link.active .sidebar-menu-item-label { color: var(--lwm-primary); }
+body.lwx .lwx-panel[menuitemname^="Service Details"] .lwx-panel-link::before,
+body.lwx .lwx-panel[menuitemname^="Service Details"] .lwx-panel-link::after { display: none !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] .sidebar-menu-item-badge { display: none; }
+/* Clearer icons */
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Information"] .sidebar-menu-item-icon::before { content: "\f05a"; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Downloads"] .sidebar-menu-item-icon::before { content: "\f019"; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Addons"] .sidebar-menu-item-icon::before { content: "\f12e"; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="cpanel"] .sidebar-menu-item-icon::before { content: "\f3fd"; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="webmail"] .sidebar-menu-item-icon::before { content: "\f0e0"; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Upgrade/Downgrade"] .sidebar-menu-item-icon::before { content: "\f201"; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Cancel"] .sidebar-menu-item-icon::before { content: "\f05e"; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] .loading { position: absolute; }
