@@ -193,6 +193,28 @@
     });
     </script>
 
+    <script>
+    // Store and configure pages: product features typed as lines (separated by
+    // <br>) become a regular checklist, whatever the spacing used in the admin.
+    (function () {
+        var nodes = document.querySelectorAll('#order-standard_cart .product-desc p[id$="-description"], #order-standard_cart .product-info p:not(.product-title)');
+        Array.prototype.forEach.call(nodes, function (p) {
+            var html = p.innerHTML;
+            if (/<(ul|ol|li|div|p|table|h\d)\b/i.test(html) || !/<br\s*\/*>/i.test(html)) { return; }
+            var lines = html.split(/<br\s*\/*>/i).map(function (l) { return l.replace(/&nbsp;/g, ' ').trim(); }).filter(function (l) { return l.replace(/<[^>]+>/g, '').trim() !== ''; });
+            if (lines.length < 2) { return; }
+            var ul = document.createElement('ul');
+            ul.className = 'lwb-features';
+            if (p.id) { ul.id = p.id; }
+            lines.forEach(function (l) { var li = document.createElement('li'); li.innerHTML = l; ul.appendChild(li); });
+            p.parentNode.replaceChild(ul, p);
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('#order-standard_cart .product-desc > ul:not(.lwb-features)'), function (ul) {
+            if (!ul.querySelector('li')) { ul.remove(); }
+        });
+    })();
+    </script>
+
     {if $templatefile == 'clientareaproductdetails'}
     <script>
     // Service details: usage dials (cPanel module) become progress bars.

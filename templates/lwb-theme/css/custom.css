@@ -1431,3 +1431,93 @@ body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="webmail"] .s
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Change Password"] .sidebar-menu-item-icon,
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Upgrade/Downgrade"] .sidebar-menu-item-icon,
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Cancel"] .sidebar-menu-item-icon { visibility: hidden; }
+
+/* =====================================================================
+   DESIGN PASS 5 · LWB Theme — order process (store → configure → cart → checkout)
+   ===================================================================== */
+
+/* Product features: one regular checklist for every offer */
+body.lwx #order-standard_cart .lwb-features { list-style: none; margin: 0; padding: 0 !important; }
+body.lwx #order-standard_cart .lwb-features li { position: relative; padding: 0 0 0 26px; margin: 0 0 9px; font-size: 13.5px; line-height: 1.45; color: #344054; }
+body.lwx #order-standard_cart .lwb-features li:last-child { margin-bottom: 0; }
+body.lwx #order-standard_cart .lwb-features li::before {
+    content: "\f00c"; font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free"; font-weight: 900; position: absolute; left: 0; top: 2px;
+    display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; border-radius: 50%;
+    background: var(--lwm-ok-50); color: var(--lwm-ok); font-size: 9px;
+}
+body.lwx #order-standard_cart .products .product div.product-desc { line-height: 1.45; }
+body.lwx #order-standard_cart .product-info .lwb-features { columns: 2; column-gap: 24px; margin-top: 10px; }
+body.lwx #order-standard_cart .product-info .lwb-features li { break-inside: avoid; }
+@media (max-width: 575.98px) { body.lwx #order-standard_cart .product-info .lwb-features { columns: 1; } }
+body.lwx #order-standard_cart .product-info { padding: 18px 20px; }
+
+/* Add-ons (product and domain) as selectable cards */
+body.lwx #order-standard_cart .addon-products { row-gap: 14px; }
+body.lwx #order-standard_cart .panel-addon {
+    display: flex; flex-direction: column; height: 100%; margin: 0 !important; border: 1.5px solid var(--lwm-border) !important; border-radius: var(--lwm-radius-sm) !important;
+    background: var(--lwm-surface); box-shadow: none !important; overflow: hidden; cursor: pointer; transition: border-color .15s, box-shadow .15s;
+}
+body.lwx #order-standard_cart .panel-addon:hover { border-color: var(--lwm-border-strong) !important; box-shadow: 0 4px 14px rgba(16, 24, 40, .06) !important; }
+body.lwx #order-standard_cart .panel-addon .panel-body {
+    flex: 1; padding: 16px 16px 12px !important; text-align: left !important; font-size: 13px; line-height: 1.5; color: var(--lwm-muted);
+}
+body.lwx #order-standard_cart .panel-addon .panel-body label { display: flex; align-items: center; gap: 10px; margin: 0 0 4px; font-size: 14.5px; font-weight: 700; color: var(--lwm-text); cursor: pointer; }
+body.lwx #order-standard_cart .panel-addon .panel-body label + br { display: none; }
+body.lwx #order-standard_cart .panel-addon .panel-body img { max-height: 28px; width: auto; margin-right: 2px; }
+body.lwx #order-standard_cart .panel-addon .panel-price {
+    margin: 0 16px; padding: 10px 0 0; border-top: 1px solid #eef1f6; background: none !important; text-align: left;
+    font-size: 15px; font-weight: 800; color: var(--lwm-primary);
+}
+body.lwx #order-standard_cart .panel-addon .panel-add {
+    margin: 10px 16px 16px; padding: 9px 12px; border-radius: 9px; background: var(--lwx-soft) !important; color: var(--lwm-text) !important;
+    font-size: 13px; font-weight: 700; text-align: center; transition: background-color .15s, color .15s;
+}
+body.lwx #order-standard_cart .panel-addon:hover .panel-add { background: var(--lwm-primary-50) !important; color: var(--lwm-primary) !important; }
+body.lwx #order-standard_cart .panel-addon-selected { border-color: var(--lwm-primary) !important; background: var(--lwm-primary-50); box-shadow: 0 0 0 3px rgba(3, 6, 115, .08) !important; }
+body.lwx #order-standard_cart .panel-addon-selected .panel-add { background: var(--lwm-primary) !important; color: #fff !important; }
+
+/* Domain configuration */
+body.lwx #order-standard_cart #frmConfigureDomains .sub-heading + .row, body.lwx #order-standard_cart .domain-addon-container { margin-bottom: 8px; }
+body.lwx #order-standard_cart #frmConfigureDomains .text-success { color: var(--lwm-ok) !important; font-weight: 600; }
+
+/* "Questions?" note */
+body.lwx #order-standard_cart .info-text-sm {
+    display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 18px; padding: 12px 16px;
+    border: 1px dashed var(--lwm-border-strong) !important; border-radius: 10px; background: transparent !important; color: var(--lwm-muted) !important; font-size: 13px;
+}
+body.lwx #order-standard_cart .info-text-sm i { color: var(--lwm-primary); }
+body.lwx #order-standard_cart .info-text-sm .alert-link { color: var(--lwm-primary); font-weight: 700; }
+
+/* Domain registrant contact (checkout) */
+body.lwx #order-standard_cart #inputDomainContact { max-width: 420px; }
+body.lwx #order-standard_cart #inputDomainContact.form-control { margin: 0; }
+body.lwx #order-standard_cart #frmCheckout .offset-sm-3:has(#inputDomainContact) { margin-left: 0; flex: 0 0 100%; max-width: 100%; }
+body.lwx #order-standard_cart #frmCheckout .sub-heading + p.small.text-muted { text-align: left; font-size: 13px; margin-bottom: 10px; }
+
+/* Domain choice: www. prefix and TLD */
+body.lwx #order-standard_cart .domain-selection-options .input-group-text, body.lwx #order-standard_cart .domain-selection-options .input-group-addon {
+    background: var(--lwx-soft); border-color: var(--lwm-border); color: var(--lwm-muted); font-weight: 600; border-radius: 10px 0 0 10px;
+}
+body.lwx #order-standard_cart .domain-selection-options .form-control { border-color: var(--lwm-border); min-height: 42px; }
+body.lwx #order-standard_cart .domain-selection-options .btn { min-height: 42px; border-radius: 10px; padding: 0 20px; }
+
+/* Cart review: quantity, promo code */
+body.lwx #order-standard_cart .view-cart-items .item-qty input { max-width: 64px; margin: 0 auto 6px; border-radius: 9px; border-color: var(--lwm-border); min-height: 36px; }
+body.lwx #order-standard_cart .view-cart-items .item-qty .btn-xs {
+    display: block; margin: 0 auto; padding: 4px 10px; border: 1px solid var(--lwx-line); border-radius: 8px; background: #fff; color: var(--lwm-text);
+    font-size: 11.5px; font-weight: 600; line-height: 1.3; white-space: normal;
+}
+body.lwx #order-standard_cart .view-cart-items .item-qty .btn-xs:hover { border-color: var(--lwm-primary); color: var(--lwm-primary); }
+body.lwx #order-standard_cart .view-cart-items .item:hover { background: #fafbfd; }
+body.lwx #order-standard_cart .view-cart-tabs .nav-tabs { display: none; }
+body.lwx #order-standard_cart .view-cart-tabs .tab-content { margin-top: 16px; padding: 16px; }
+body.lwx #order-standard_cart .view-cart-tabs .tab-content::before { content: "Code promo"; display: block; margin-bottom: 10px; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--lwm-primary); }
+body.lwx #order-standard_cart .view-cart-tabs .promo form { display: flex; gap: 10px; flex-wrap: wrap; }
+body.lwx #order-standard_cart .view-cart-tabs .promo .form-group { flex: 1 1 240px; margin: 0; }
+body.lwx #order-standard_cart .view-cart-tabs .promo .btn { width: auto !important; flex: 0 0 auto; border-radius: 10px; padding: 0 20px; min-height: 42px; font-weight: 700; background: var(--lwm-primary); color: #fff; border: 0; }
+body.lwx #order-standard_cart .view-cart-tabs .promo .field { min-height: 42px; border-radius: 10px; }
+body.lwx #order-standard_cart .info-text-sm { display: block !important; text-align: center; }
+body.lwx #order-standard_cart .info-text-sm i { margin-right: 6px; }
+body.lwx #order-standard_cart .view-cart-tabs .promo .btn, body.lwx #order-standard_cart .view-cart-tabs .promo .btn:hover { background: var(--lwm-primary) !important; color: #fff !important; border: 0 !important; }
+body.lwx #order-standard_cart .view-cart-items .item { background: #fff !important; }
+body.lwx #order-standard_cart .view-cart-items .item:hover { background: #fafbfd !important; }
