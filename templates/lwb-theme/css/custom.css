@@ -1307,9 +1307,9 @@ body.lwx .pagination .page-link:hover { background: var(--lwx-soft); color: var(
 body.lwx .pagination .page-item.active .page-link { background: var(--lwm-primary); color: #fff; }
 body.lwx .pagination .page-item.disabled .page-link { color: #c0c6d4; background: transparent; }
 body.lwx table.table-list .btn-sm, body.lwx #tableEmailsList .btn {
-    background: #fff; color: var(--lwm-text) !important; border: 1px solid var(--lwx-line); border-radius: 8px; font-weight: 600; font-size: 12.5px; padding: 6px 12px; box-shadow: none;
+    background: #fff !important; color: var(--lwm-text) !important; border: 1px solid var(--lwx-line) !important; border-radius: 8px; font-weight: 600; font-size: 12.5px; padding: 6px 12px; box-shadow: none;
 }
-body.lwx table.table-list .btn-sm:hover, body.lwx #tableEmailsList .btn:hover { border-color: var(--lwm-primary); color: var(--lwm-primary) !important; background: var(--lwm-primary-50); }
+body.lwx table.table-list .btn-sm:hover, body.lwx #tableEmailsList .btn:hover { border-color: var(--lwm-primary) !important; color: var(--lwm-primary) !important; background: var(--lwm-primary-50) !important; }
 
 /* Ticket form: markdown editor and attachments */
 body.lwx .md-editor { border: 1px solid var(--lwx-line) !important; border-radius: 10px; overflow: hidden; box-shadow: none !important; }
