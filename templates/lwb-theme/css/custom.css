@@ -1423,6 +1423,8 @@ body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="webmail"] .s
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Change Password"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/password.svg) !important; }
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Upgrade/Downgrade"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/upgrade.svg) !important; }
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Cancel"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/cancel.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="zoneeditor"] .sidebar-menu-item-icon-wrapper { background-image: url(../img/actions/dns.svg) !important; }
+body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="zoneeditor"] .sidebar-menu-item-icon,
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Information"] .sidebar-menu-item-icon,
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Downloads"] .sidebar-menu-item-icon,
 body.lwx .lwx-panel[menuitemname^="Service Details"] [menuitemname="Addons"] .sidebar-menu-item-icon,

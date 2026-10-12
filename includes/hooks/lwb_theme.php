@@ -119,6 +119,70 @@ foreach (['ClientAreaPrimarySidebar', 'ClientAreaSecondarySidebar'] as $lwbHook)
 }
 
 /**
+ * Active cPanel hosting service of the logged-in client matching $where, or null.
+ */
+function lwb_cpanel_service(array $where, $clientId)
+{
+    $q = Capsule::table('tblhosting as h')->join('tblproducts as p', 'p.id', '=', 'h.packageid')
+        ->where('h.userid', (int) $clientId)->where('h.domainstatus', 'Active')->where('p.servertype', 'cpanel');
+    foreach ($where as $col => $value) {
+        $q->where($col, $value);
+    }
+    $id = $q->value('h.id');
+    return $id ? (int) $id : null;
+}
+
+/**
+ * "DNS management" button that opens the cPanel Zone Editor of the hosting
+ * account by single sign-on, like "Login to cPanel" (no password asked).
+ * Added to the service actions; on a domain hosted in a cPanel account of the
+ * same client it replaces the registrar DNS page, which has no effect when the
+ * domain uses the hosting server's nameservers.
+ */
+add_hook('ClientAreaPrimarySidebar', 50, function ($sidebar) {
+    if (!lwb_theme_active() || !$sidebar || basename((string) ($_SERVER['SCRIPT_NAME'] ?? '')) !== 'clientarea.php') {
+        return;
+    }
+    $clientId = (int) \WHMCS\Session::get('uid');
+    $action = (string) ($_REQUEST['action'] ?? '');
+    $id = (int) ($_REQUEST['id'] ?? 0);
+    if (!$clientId || !$id) {
+        return;
+    }
+    $button = function ($serviceId, $order) {
+        return [
+            'label' => \Lang::trans('domaindnsmanagement'),
+            'uri' => 'clientarea.php?action=productdetails&id=' . $serviceId . '&dosinglesignon=1&app=Domains_ZoneEditor',
+            'icon' => 'fa-network-wired',
+            'order' => $order,
+            'attributes' => ['target' => '_blank'],
+        ];
+    };
+    try {
+        if ($action === 'productdetails' && ($panel = $sidebar->getChild('Service Details Actions'))) {
+            $serviceId = lwb_cpanel_service(['h.id' => $id], $clientId);
+            if ($serviceId) {
+                $panel->addChild('zoneeditor', $button($serviceId, 3));
+            }
+        }
+        if ($action === 'domaindetails' && ($panel = $sidebar->getChild('Domain Details Management'))) {
+            $domain = Capsule::table('tbldomains')->where('id', $id)->where('userid', $clientId)->value('domain');
+            $serviceId = $domain ? lwb_cpanel_service(['h.domain' => $domain], $clientId) : null;
+            if ($serviceId) {
+                foreach ($panel->getChildren() as $child) {
+                    if (strpos((string) $child->getUri(), 'action=domaindns') !== false) {
+                        $panel->removeChild($child->getName());
+                    }
+                }
+                $panel->addChild('zoneeditor', $button($serviceId, 40));
+            }
+        }
+    } catch (\Throwable $e) {
+        logActivity('LWB Theme: DNS button skipped - ' . $e->getMessage());
+    }
+});
+
+/**
  * Cache-busting version for the theme stylesheet (changes on every CSS update).
  */
 add_hook('ClientAreaPage', 1, function ($vars) {
