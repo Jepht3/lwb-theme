@@ -1070,7 +1070,7 @@ body.lwx .domain-pricing .tld-filters { padding: 0 20px 12px; }
     body.lwx .lwx-aside .sidebar { position: static; }
     body.lwx .lwx-panel-list { flex-direction: row !important; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 4px; }
     body.lwx .lwx-panel-list::-webkit-scrollbar { display: none; }
-    body.lwx .lwx-panel-list .list-group-item { flex: none; white-space: nowrap; }
+    body.lwx .lwx-panel-list .list-group-item { flex: none; width: auto; white-space: nowrap; }
     /* Un panneau qui contient du texte (ex. « Vous avez déjà un compte ? ») ne défile pas : le texte passe à la ligne, les liens en dessous. */
     body.lwx .lwx-panel-list:has(.lwx-panel-text) { flex-wrap: wrap; overflow-x: visible; }
     body.lwx .lwx-panel-list .lwx-panel-text { flex: 1 1 100%; white-space: normal; }
@@ -1083,8 +1083,10 @@ body.lwx .domain-pricing .tld-filters { padding: 0 20px 12px; }
     body.lwx .lwx-ico-lg { display: none; }
     body.lwx .domain-checker-bg { padding: 22px 14px !important; }
 }
+/* Pages sans conteneur (404…) : la .row de Twenty-One dépassait de 15 px et faisait défiler la page sur le côté. */
+body.lwx #main-body > div:not(.lwx-container) > .row { margin-left: 0; margin-right: 0; }
 body.lwx .domain-checker-container .input-group-box .input-group { flex-wrap: nowrap; }
-body.lwx .domain-checker-container .input-group-box .btn { flex: none; min-width: 140px; white-space: nowrap; }
+body.lwx .domain-checker-container .input-group-box .btn { flex: none; width: auto; min-width: 140px; white-space: nowrap; }
 body.lwx .domain-pricing .tld-pricing-header, body.lwx .domain-pricing .tld-pricing-header * { border: 0 !important; box-shadow: none !important; }
 body.lwx .domain-pricing .tld-pricing-header { background: #f9fafb; }
 body.lwx .login-form, body.lwx .register-form { background: transparent !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; }
