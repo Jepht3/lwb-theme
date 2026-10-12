@@ -154,6 +154,9 @@
             {/if}
         </section>
 
+        {* ---------- Account security (LWB IP module) ---------- *}
+        {include file="$template/includes/lwb-ip-card.tpl"}
+
     </div>
 </div>
 {/if}
