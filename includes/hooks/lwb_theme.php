@@ -152,7 +152,7 @@ add_hook('ClientAreaPrimarySidebar', 50, function ($sidebar) {
     $button = function ($serviceId, $order) {
         return [
             'label' => \Lang::trans('domaindnsmanagement'),
-            'uri' => 'clientarea.php?action=productdetails&id=' . $serviceId . '&dosinglesignon=1&app=Domains_ZoneEditor',
+            'uri' => 'clientarea.php?action=productdetails&id=' . $serviceId . '&lwbzone=1',
             'icon' => 'fa-network-wired',
             'order' => $order,
             'attributes' => ['target' => '_blank'],
@@ -179,6 +179,58 @@ add_hook('ClientAreaPrimarySidebar', 50, function ($sidebar) {
         }
     } catch (\Throwable $e) {
         logActivity('LWB Theme: DNS button skipped - ' . $e->getMessage());
+    }
+});
+
+/**
+ * Single sign-on straight to the cPanel Zone Editor ("&lwbzone=1" on the service page).
+ * WHMCS's cPanel module only forwards its own list of cPanel apps, which does not
+ * include the Zone Editor, so the session is requested from WHM here with the
+ * server credentials stored in WHMCS (app "Zone_Editor"). Falls back to the
+ * standard "Login to cPanel" link if WHM refuses.
+ */
+add_hook('ClientAreaPage', 0, function ($vars) {
+    if (empty($_GET['lwbzone']) || ($_GET['action'] ?? '') !== 'productdetails' || basename((string) ($_SERVER['SCRIPT_NAME'] ?? '')) !== 'clientarea.php') {
+        return [];
+    }
+    $clientId = (int) \WHMCS\Session::get('uid');
+    $serviceId = $clientId ? lwb_cpanel_service(['h.id' => (int) ($_GET['id'] ?? 0)], $clientId) : null;
+    if (!$serviceId) {
+        return [];
+    }
+    $fallback = 'clientarea.php?action=productdetails&id=' . $serviceId . '&dosinglesignon=1';
+    try {
+        $server = new \WHMCS\Module\Server();
+        if (!$server->loadByServiceID($serviceId)) {
+            throw new \RuntimeException('service introuvable');
+        }
+        $p = $server->buildParams();
+        $hash = preg_replace('/\s+/', '', (string) ($p['serveraccesshash'] ?? ''));
+        $auth = $hash !== ''
+            ? 'Authorization: whm ' . $p['serverusername'] . ':' . $hash
+            : 'Authorization: Basic ' . base64_encode($p['serverusername'] . ':' . $p['serverpassword']);
+        $host = (string) ($p['serverhostname'] ?: $p['serverip']);
+        $query = http_build_query(['api.version' => 1, 'user' => $p['username'], 'service' => 'cpaneld', 'app' => 'Zone_Editor']);
+        $ch = curl_init('https://' . $host . ':2087/json-api/create_user_session?' . $query);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 20,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_HTTPHEADER => [$auth],
+        ]);
+        $response = json_decode((string) curl_exec($ch), true);
+        curl_close($ch);
+        $url = (string) ($response['data']['url'] ?? '');
+        if ($url === '' || strpos($url, 'https://') !== 0) {
+            throw new \RuntimeException((string) ($response['metadata']['reason'] ?? 'réponse WHM vide'));
+        }
+        header('Location: ' . $url);
+        exit;
+    } catch (\Throwable $e) {
+        logActivity('LWB Theme: Zone Editor SSO failed for service ' . $serviceId . ' - ' . $e->getMessage());
+        header('Location: ' . $fallback);
+        exit;
     }
 });
 
