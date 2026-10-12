@@ -259,6 +259,9 @@ footer.footer .copyright { color: rgba(255, 255, 255, .55); margin: 20px 0 0; }
 
 @media (max-width: 575.98px) {
     body.primary-bg-color { font-size: 14px; }
+    /* Recherche de domaine de l'accueil : le p-5 de Twenty-One coupait « Rechercher » / « Transférer » à 320 px. */
+    .home-domain-search .p-5 { padding: 1.5rem 0 !important; }
+    .home-domain-search .btn { padding-left: 10px; padding-right: 10px; }
     #main-body { padding-top: 14px; }
     .card-body { padding: 1rem; }
     header.header .navbar-light { padding-top: 10px; padding-bottom: 10px; }
@@ -1068,6 +1071,9 @@ body.lwx .domain-pricing .tld-filters { padding: 0 20px 12px; }
     body.lwx .lwx-panel-list { flex-direction: row !important; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 4px; }
     body.lwx .lwx-panel-list::-webkit-scrollbar { display: none; }
     body.lwx .lwx-panel-list .list-group-item { flex: none; white-space: nowrap; }
+    /* Un panneau qui contient du texte (ex. « Vous avez déjà un compte ? ») ne défile pas : le texte passe à la ligne, les liens en dessous. */
+    body.lwx .lwx-panel-list:has(.lwx-panel-text) { flex-wrap: wrap; overflow-x: visible; }
+    body.lwx .lwx-panel-list .lwx-panel-text { flex: 1 1 100%; white-space: normal; }
     body.lwx .lwx-hero-meta { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 575.98px) {
