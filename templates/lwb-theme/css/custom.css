@@ -1600,6 +1600,10 @@ body.lwx .lwx-mtabs .lwx-ts { display: none; }
     body.lwx table.table-list thead th { padding: 10px 6px; }
     body.lwx table.table-list tbody td { padding: 10px 6px; font-size: 13px; }
     body.lwx table.table-list .btn-sm, body.lwx #tableEmailsList .btn { white-space: normal; padding: 5px 8px; font-size: 12px; line-height: 1.2; }
+    /* Montants des cartes (ex. « 1,961.00 USD ») : jamais coupés. */
+    body.lwx .lwx-stat b { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; font-size: 19px; }
+    /* Carte « Sécurité du compte » : le bouton du bas suffit, l'en-tête reste sur une ligne. */
+    body.lwx .lwx-ipcard .lwx-card-head > a { display: none; }
 }
 @media (max-width: 340px) {
     body.lwx .lwx-mtabs { overflow-x: auto; }
