@@ -103,11 +103,11 @@
             </div>
             <nav class="lwx-mtabs" aria-label="Navigation">
             {if $loggedin}
-                <a class="{if $lwxSection == 'home'}active{/if}" href="{$WEB_ROOT}/clientarea.php"><i class="far fa-th-large"></i>Tableau de bord</a>
+                <a class="{if $lwxSection == 'home'}active{/if}" href="{$WEB_ROOT}/clientarea.php"><i class="far fa-th-large"></i><span class="lwx-tl">Tableau de bord</span><span class="lwx-ts">Accueil</span></a>
                 <a class="{if $lwxSection == 'services'}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=services"><i class="far fa-cube"></i>Services</a>
                 <a class="{if $lwxSection == 'domains'}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=domains"><i class="far fa-globe"></i>Domaines</a>
-                <a class="{if $lwxSection == 'billing'}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=invoices"><i class="far fa-credit-card"></i>Facturation</a>
-                <a class="{if $lwxSection == 'support'}active{/if}" href="{$WEB_ROOT}/supporttickets.php"><i class="far fa-life-ring"></i>Assistance</a>
+                <a class="{if $lwxSection == 'billing'}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=invoices"><i class="far fa-credit-card"></i><span class="lwx-tl">Facturation</span><span class="lwx-ts">Factures</span></a>
+                <a class="{if $lwxSection == 'support'}active{/if}" href="{$WEB_ROOT}/supporttickets.php"><i class="far fa-life-ring"></i><span class="lwx-tl">Assistance</span><span class="lwx-ts">Aide</span></a>
                 <a class="{if $lwxSection == 'store'}active{/if}" href="{$WEB_ROOT}/cart.php"><i class="far fa-shopping-bag"></i>Boutique</a>
                 <a class="{if in_array($lwxSection, ['details', 'emails', 'security', 'contacts'])}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=details"><i class="far fa-user"></i>Compte</a>
             {else}

@@ -1585,3 +1585,23 @@ body.lwx .lwx-iplist li:last-child { border-bottom: 0; }
 body.lwx .lwx-iplist li > div { flex: 1; min-width: 0; }
 body.lwx .lwx-iplist b { display: block; font-weight: 700; }
 body.lwx .lwx-iplist small { display: block; color: var(--lwm-muted); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* === Téléphone (audit 13/10/2026) ================================= */
+/* Onglets mobiles : libellé court sous 576 px (Accueil, Factures, Aide) pour que les 7 onglets du client tiennent. */
+body.lwx .lwx-mtabs .lwx-ts { display: none; }
+@media (max-width: 575.98px) {
+    body.lwx .lwx-mtabs .lwx-tl { display: none; }
+    body.lwx .lwx-mtabs .lwx-ts { display: inline; }
+    body.lwx .lwx-mtabs:has(> a:nth-child(6)) a { font-size: 10.5px; letter-spacing: -.01em; }
+    /* Domaines : les actions groupées passent à la ligne au lieu de pousser la page. */
+    body.lwx .lwx-bulk .btn-group { display: flex; flex-wrap: wrap; gap: 6px; max-width: 100%; }
+    body.lwx .lwx-bulk .btn-group > .btn, body.lwx .lwx-bulk .btn-group > .btn-group > .btn { border-radius: 8px !important; margin: 0 !important; }
+    /* Tableaux (e-mails, devis…) : plus compacts, le bouton passe sur deux lignes. */
+    body.lwx table.table-list thead th { padding: 10px 6px; }
+    body.lwx table.table-list tbody td { padding: 10px 6px; font-size: 13px; }
+    body.lwx table.table-list .btn-sm, body.lwx #tableEmailsList .btn { white-space: normal; padding: 5px 8px; font-size: 12px; line-height: 1.2; }
+}
+@media (max-width: 340px) {
+    body.lwx .lwx-mtabs { overflow-x: auto; }
+    body.lwx .lwx-mtabs a { flex: 0 0 auto; min-width: 52px; }
+}
