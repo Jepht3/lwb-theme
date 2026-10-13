@@ -1609,3 +1609,8 @@ body.lwx .lwx-mtabs .lwx-ts { display: none; }
     body.lwx .lwx-mtabs { overflow-x: auto; }
     body.lwx .lwx-mtabs a { flex: 0 0 auto; min-width: 52px; }
 }
+/* Sous-onglets du compte sur mobile (Coordonnées, Connexions et IP, Sécurité…). */
+body.lwx .lwx-msub { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 10px 12px; background: var(--lwm-bg); border-bottom: 1px solid var(--lwm-border); }
+body.lwx .lwx-msub::-webkit-scrollbar { display: none; }
+body.lwx .lwx-msub a { flex: none; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--lwm-border); background: #fff; color: var(--lwm-text) !important; font-size: 13px; font-weight: 600; white-space: nowrap; text-decoration: none !important; }
+body.lwx .lwx-msub a.active { background: var(--lwm-primary); border-color: var(--lwm-primary); color: #fff !important; }

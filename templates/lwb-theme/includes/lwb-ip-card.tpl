@@ -8,6 +8,9 @@
     {if $lwbIp.alert}
         <p class="lwx-notice lwx-notice-warning"><i class="fas fa-exclamation-triangle"></i> Dernière connexion depuis un pays inhabituel. Si ce n'était pas vous, bloquez l'adresse et changez votre mot de passe.</p>
     {/if}
+    {if !$lwbIp.logins}
+        <p class="lwx-meta">Vos prochaines connexions s'afficheront ici, avec l'appareil et le lieu. Vous pourrez bloquer une adresse inconnue.</p>
+    {/if}
     <ul class="lwx-iplist">
         {foreach $lwbIp.logins as $l}
             <li>

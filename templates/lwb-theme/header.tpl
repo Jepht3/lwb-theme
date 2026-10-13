@@ -18,6 +18,7 @@
 {elseif $templatefile|truncate:16:'':true == 'account-contacts'}{assign var=lwxSection value='contacts'}
 {elseif in_array($templatefile, ['clientareaemails', 'viewemail'])}{assign var=lwxSection value='emails'}
 {elseif in_array($templatefile, ['user-security', 'user-password', 'user-profile', 'account-security', 'account-user-management', 'account-user-permissions'])}{assign var=lwxSection value='security'}
+{elseif $smarty.get.m == 'lwb_ip'}{assign var=lwxSection value='logins'}
 {elseif $inShoppingCart}{assign var=lwxSection value='store'}
 {/if}
 {* Pages redesigned without sidebars. *}
@@ -51,6 +52,7 @@
             <a class="lwx-link{if $lwxSection == 'details'} active{/if}" href="{$WEB_ROOT}/clientarea.php?action=details"><i class="far fa-id-card"></i><span>Mes coordonnées</span></a>
             <a class="lwx-link{if $lwxSection == 'emails'} active{/if}" href="{$WEB_ROOT}/clientarea.php?action=emails"><i class="far fa-envelope"></i><span>E-mails reçus</span></a>
             <a class="lwx-link{if $lwxSection == 'security'} active{/if}" href="{routePath('user-security')}"><i class="far fa-shield-check"></i><span>Sécurité</span></a>
+            {if $lwbIpUrl}<a class="lwx-link{if $lwxSection == 'logins'} active{/if}" href="{$WEB_ROOT}/{$lwbIpUrl}"><i class="far fa-history"></i><span>Connexions et IP</span></a>{/if}
         {else}
             <a class="lwx-link{if $templatefile == 'homepage'} active{/if}" href="{$WEB_ROOT}/index.php"><i class="far fa-home"></i><span>Accueil</span></a>
             <a class="lwx-link{if $inShoppingCart} active{/if}" href="{$WEB_ROOT}/cart.php"><i class="far fa-shopping-bag"></i><span>Boutique</span></a>
@@ -109,7 +111,7 @@
                 <a class="{if $lwxSection == 'billing'}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=invoices"><i class="far fa-credit-card"></i><span class="lwx-tl">Facturation</span><span class="lwx-ts">Factures</span></a>
                 <a class="{if $lwxSection == 'support'}active{/if}" href="{$WEB_ROOT}/supporttickets.php"><i class="far fa-life-ring"></i><span class="lwx-tl">Assistance</span><span class="lwx-ts">Aide</span></a>
                 <a class="{if $lwxSection == 'store'}active{/if}" href="{$WEB_ROOT}/cart.php"><i class="far fa-shopping-bag"></i>Boutique</a>
-                <a class="{if in_array($lwxSection, ['details', 'emails', 'security', 'contacts'])}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=details"><i class="far fa-user"></i>Compte</a>
+                <a class="{if in_array($lwxSection, ['details', 'emails', 'security', 'contacts', 'logins'])}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=details"><i class="far fa-user"></i>Compte</a>
             {else}
                 <a class="{if $templatefile == 'homepage'}active{/if}" href="{$WEB_ROOT}/index.php"><i class="far fa-home"></i>Accueil</a>
                 <a class="{if $inShoppingCart}active{/if}" href="{$WEB_ROOT}/cart.php"><i class="far fa-shopping-bag"></i>Boutique</a>
@@ -118,6 +120,17 @@
                 <a class="{if $templatefile == 'contact'}active{/if}" href="{$WEB_ROOT}/contact.php"><i class="far fa-envelope"></i>Contact</a>
             {/if}
             </nav>
+            {* Account pages on mobile: the sidebar is hidden, so its account links become sub-tabs. *}
+            {if $loggedin && in_array($lwxSection, ['details', 'emails', 'security', 'contacts', 'logins'])}
+            <nav class="lwx-msub" aria-label="Compte">
+                <a class="{if $lwxSection == 'details'}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=details">Coordonnées</a>
+                {if $lwbIpUrl}<a class="{if $lwxSection == 'logins'}active{/if}" href="{$WEB_ROOT}/{$lwbIpUrl}">Connexions et IP</a>{/if}
+                <a class="{if $lwxSection == 'security'}active{/if}" href="{routePath('user-security')}">Sécurité</a>
+                <a class="{if $lwxSection == 'emails'}active{/if}" href="{$WEB_ROOT}/clientarea.php?action=emails">E-mails</a>
+                <a class="{if $lwxSection == 'contacts'}active{/if}" href="{routePath('account-contacts')}">Contacts</a>
+                <a href="{routePath('account-paymentmethods')}">Paiement</a>
+            </nav>
+            {/if}
         </div>
 
         {* Top bar *}
@@ -167,6 +180,7 @@
                             <a class="dropdown-item" href="{$WEB_ROOT}/clientarea.php?action=emails"><i class="far fa-envelope fa-fw"></i> E-mails reçus</a>
                             <a class="dropdown-item" href="{routePath('user-password')}"><i class="far fa-key fa-fw"></i> Mot de passe</a>
                             <a class="dropdown-item" href="{routePath('user-security')}"><i class="far fa-shield-check fa-fw"></i> Sécurité</a>
+                            {if $lwbIpUrl}<a class="dropdown-item" href="{$WEB_ROOT}/{$lwbIpUrl}"><i class="far fa-history fa-fw"></i> Connexions et IP</a>{/if}
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{routePath('user-accounts')}"><i class="far fa-random fa-fw"></i> Changer de compte</a>
                             {if $adminMasqueradingAsClient || $adminLoggedIn}
