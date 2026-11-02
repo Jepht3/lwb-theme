@@ -46,6 +46,7 @@ thèmes ne sont pas affectés.
 
 ## Historique
 
+- **1.4.1** — Mobile : menus de page qui passent à la ligne (plus de liens hors écran), « Gestion DNS » et « Code EPP » dans les actions rapides du domaine (éditeur de zone cPanel si le domaine est hébergé), notifications et aide WhatsApp dans la barre mobile, onglets des domaines et sous-onglets du compte sans élément caché ; page Renouvellement des services : filtre qui ne comprime plus les colonnes.
 - **1.4.0** — Nouveau design : bas de la page de paiement (lettre d'information, CGU, bouton), base de connaissances, annonces ; intégration du statut des services.
 - **1.3.1** — Page de commande : modes de paiement en grille de cartes avec logos.
 - **1.3.0** — Première version publique sous le nom LWB Theme : refonte de

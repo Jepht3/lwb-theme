@@ -1614,3 +1614,25 @@ body.lwx .lwx-msub { display: flex; gap: 6px; overflow-x: auto; scrollbar-width:
 body.lwx .lwx-msub::-webkit-scrollbar { display: none; }
 body.lwx .lwx-msub a { flex: none; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--lwm-border); background: #fff; color: var(--lwm-text) !important; font-size: 13px; font-weight: 600; white-space: nowrap; text-decoration: none !important; }
 body.lwx .lwx-msub a.active { background: var(--lwm-primary); border-color: var(--lwm-primary); color: #fff !important; }
+
+
+/* Renouvellement des services : le bouton flottant du filtre sortait de .header-lined (display:block) et comprimait les colonnes. flow-root contient les flottants. */
+body.lwx #order-standard_cart .header-lined { display: flow-root; }
+
+/* Mobile : les menus de page (Gestion DNS, code EPP, options de service…) passent à la ligne
+   au lieu de défiler à l'horizontale sans barre visible, où les derniers liens restaient hors écran. */
+@media (max-width: 991.98px) {
+    body.lwx .lwx-panel-list { flex-wrap: wrap; overflow-x: visible; }
+    body.lwx .lwx-panel-list .list-group-item { white-space: normal; }
+}
+/* Mobile : onglets et sous-menus qui passent à la ligne au lieu de cacher leurs derniers éléments
+   (filtre « Expirés / annulés » des domaines, « Contacts » et « Paiement » du compte). */
+@media (max-width: 991.98px) {
+    body.lwx .lwx-tabs { flex-wrap: wrap; overflow-x: visible; }
+    body.lwx .lwx-msub { flex-wrap: wrap; overflow-x: visible; }
+}
+/* Mobile : notifications et aide WhatsApp dans la barre du haut. */
+body.lwx .lwx-mnotif { position: static; }
+body.lwx .lwx-mnotif .lwx-mbar-icon { background: transparent; border: 0; }
+body.lwx .lwx-mnotif .dropdown-menu { left: 12px !important; right: 12px !important; width: auto; max-height: 70vh; overflow-y: auto; transform: none !important; top: 52px !important; }
+body.lwx .lwx-mnotif .dropdown-item { white-space: normal; font-size: 14px; padding: 10px 14px; }

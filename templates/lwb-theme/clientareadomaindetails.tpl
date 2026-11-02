@@ -68,7 +68,20 @@
             </div>
         </div>
 
-        {if $canDomainBeManaged and ($managementoptions.nameservers or $managementoptions.contacts or $managementoptions.locking or $renew)}
+        {* Gestion DNS et code EPP : liens repris du menu de la page, qui est en bas de l'écran sur mobile. *}
+        {* Si le domaine est hébergé chez nous, le hook lwb_theme remplace la gestion DNS du registrar par l'éditeur de zone cPanel (« zoneeditor »). *}
+        {assign var=lwxDnsLink value=''}{assign var=lwxDnsTarget value=''}{assign var=lwxEppLink value=''}
+        {if $primarySidebar->getChild('Domain Details Management')}
+            {assign var=lwxDomMenu value=$primarySidebar->getChild('Domain Details Management')}
+            {if $lwxDomMenu->getChild('zoneeditor')}
+                {assign var=lwxDnsLink value=$lwxDomMenu->getChild('zoneeditor')->getUri()}
+                {assign var=lwxDnsTarget value=$lwxDomMenu->getChild('zoneeditor')->getAttribute('target')}
+            {elseif $lwxDomMenu->getChild('Manage DNS Host Records')}
+                {assign var=lwxDnsLink value=$lwxDomMenu->getChild('Manage DNS Host Records')->getUri()}
+            {/if}
+            {if $lwxDomMenu->getChild('Get EPP Code')}{assign var=lwxEppLink value=$lwxDomMenu->getChild('Get EPP Code')->getUri()}{/if}
+        {/if}
+        {if $canDomainBeManaged and ($managementoptions.nameservers or $managementoptions.contacts or $managementoptions.locking or $renew or $lwxDnsLink or $lwxEppLink)}
             <div class="card">
                 <div class="card-body">
                     <div class="lwx-sec-head">
@@ -82,6 +95,12 @@
                                 <span><b>Serveurs de noms</b><small>{lang key='changeDomainNS'}</small></span>
                             </a>
                         {/if}
+                        {if $systemStatus == 'Active' && $lwxDnsLink}
+                            <a class="lwx-action" href="{$lwxDnsLink}"{if $lwxDnsTarget} target="{$lwxDnsTarget}" rel="noopener"{/if}>
+                                <span class="lwx-ico"><i class="far fa-list-alt"></i></span>
+                                <span><b>Gestion DNS</b><small>Enregistrements A, CNAME, MX, TXT…</small></span>
+                            </a>
+                        {/if}
                         {if $systemStatus == 'Active' && $managementoptions.contacts}
                             <a class="lwx-action" href="clientarea.php?action=domaincontacts&domainid={$domainid}">
                                 <span class="lwx-ico"><i class="far fa-address-card"></i></span>
@@ -92,6 +111,12 @@
                             <a class="lwx-action tabControlLink" data-toggle="tab" href="#tabReglock">
                                 <span class="lwx-ico"><i class="far fa-lock"></i></span>
                                 <span><b>Verrouillage</b><small>{lang key='changeRegLock'}</small></span>
+                            </a>
+                        {/if}
+                        {if $systemStatus == 'Active' && $lwxEppLink}
+                            <a class="lwx-action" href="{$lwxEppLink}">
+                                <span class="lwx-ico"><i class="far fa-key"></i></span>
+                                <span><b>Code EPP</b><small>Code de transfert du domaine</small></span>
                             </a>
                         {/if}
                         {if $renew}
