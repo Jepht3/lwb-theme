@@ -96,6 +96,28 @@
                 <a class="lwx-brand" href="{$WEB_ROOT}/{if $loggedin}clientarea.php{else}index.php{/if}">
                     {if $assetLogoPath}<img src="{$assetLogoPath}" alt="{$companyname}">{else}<span>{$companyname}</span>{/if}
                 </a>
+                {* Aide WhatsApp et notifications : sur ordinateur, dans la barre latérale et la barre du haut, masquées sur mobile. *}
+                {if $lwbContact.whatsapp_link}
+                    <a class="lwx-mbar-icon" href="{$lwbContact.whatsapp_link}" target="_blank" rel="noopener" aria-label="Besoin d'aide ? Écrivez-nous sur WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                {/if}
+                {if $loggedin}
+                    <div class="dropdown lwx-mnotif">
+                        <button type="button" class="lwx-mbar-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{lang key='notifications'}">
+                            <i class="far fa-bell"></i>{if count($clientAlerts) > 0}<em>{count($clientAlerts)}</em>{/if}
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right lwx-menu">
+                            {foreach $clientAlerts as $alert}
+                                <a class="dropdown-item" href="{$alert->getLink()}"><i class="fas fa-fw fa-{if $alert->getSeverity() == 'danger'}exclamation-circle text-danger{elseif $alert->getSeverity() == 'warning'}exclamation-triangle text-warning{else}info-circle{/if}"></i> {$alert->getMessage()}</a>
+                            {foreachelse}
+                                <span class="dropdown-item-text text-muted">{lang key='notificationsnone'}</span>
+                            {/foreach}
+                            {if $lwbStatus}
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{$WEB_ROOT}/{$lwbStatus.url}"><span class="lwb-dot lwb-tone-{$lwbStatus.tone}"></span> {$lwbStatus.label}</a>
+                            {/if}
+                        </div>
+                    </div>
+                {/if}
                 <a class="lwx-mbar-icon" href="{$WEB_ROOT}/cart.php?a=view" aria-label="{lang key="carttitle"}"><i class="far fa-shopping-cart"></i>{if $cartitemcount}<em>{$cartitemcount}</em>{/if}</a>
                 {if $loggedin}
                     <a class="lwx-mbar-icon" href="{$WEB_ROOT}/logout.php" aria-label="Se déconnecter"><i class="far fa-sign-out"></i></a>
